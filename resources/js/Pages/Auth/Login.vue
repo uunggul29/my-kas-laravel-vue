@@ -31,69 +31,71 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
+        <Head title="Login MyKas" />
+
+        <!-- Header -->
+        <div class="mb-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800">
+                Selamat Datang
+            </h2>
+
+            <p class="mt-2 text-gray-500">
+                Silakan masuk untuk melanjutkan
+            </p>
+        </div>
+
+        <!-- Status -->
+        <div v-if="status" class="mb-4 rounded-xl bg-green-100 px-4 py-3 text-sm font-medium text-green-700">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
+        <!-- Form -->
+        <form @submit.prevent="submit" class="space-y-5">
 
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
+            <!-- Email -->
+            <div>
+                <InputLabel for="email" value="Email" class="text-gray-700" />
+
+                <div class="relative mt-2">
+                    <TextInput id="email" type="email"
+                        class="block w-full rounded-2xl border-gray-300 py-3 pl-4 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                        v-model="form.email" required autofocus autocomplete="username" placeholder="Masukkan email" />
+                </div>
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+            <!-- Password -->
+            <div>
+                <div class="flex items-center justify-between">
+                    <InputLabel for="password" value="Password" class="text-gray-700" />
+                </div>
 
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
+                <div class="relative mt-2">
+                    <TextInput id="password" type="password"
+                        class="block w-full rounded-2xl border-gray-300 py-3 pl-4 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                        v-model="form.password" required autocomplete="current-password"
+                        placeholder="Masukkan password" />
+                </div>
 
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
-                </label>
-            </div>
+            <!-- Button -->
+            <button type="submit" :disabled="form.processing"
+                class="w-full rounded-2xl bg-gradient-to-r from-blue-700 to-cyan-500 py-3 text-lg font-semibold text-white shadow-lg transition duration-300 hover:scale-[1.02] hover:from-blue-800 hover:to-cyan-600 disabled:opacity-50">
+                {{ form.processing ? 'Loading...' : 'Login' }}
+            </button>
 
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
+            <!-- Register Redirect -->
+            <div class="text-center">
+                <p class="text-sm text-gray-600">
+                    Belum punya akun?
+                    <Link :href="route('register')" class="font-semibold text-blue-600 transition hover:text-blue-800">
+                        Daftar sekarang
+                    </Link>
+                </p>
             </div>
         </form>
     </GuestLayout>
