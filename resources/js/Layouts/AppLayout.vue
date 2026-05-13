@@ -64,10 +64,10 @@ onBeforeUnmount(() => {
                 <div class="hidden md:flex items-center bg-slate-100 p-1.5 rounded-full border border-slate-200">
                     <Link href="/kas" class="px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300"
                         :class="$page.url === '/kas'
-                                ? 'bg-white text-blue-600 shadow-sm'
-                                : 'text-slate-500 hover:text-slate-800'
+                            ? 'bg-white text-blue-600 shadow-sm'
+                            : 'text-slate-500 hover:text-slate-800'
                             ">
-                        Dashboard
+                        Beranda
                     </Link>
                 </div>
 
@@ -79,10 +79,6 @@ onBeforeUnmount(() => {
                         class="flex items-center gap-3 rounded-2xl px-2 py-1.5 hover:bg-slate-100 transition-all">
 
                         <div class="text-right hidden sm:block">
-                            <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
-                                Selamat Datang
-                            </p>
-
                             <p class="text-sm font-bold text-slate-700">
                                 {{ user }}
                             </p>
@@ -107,32 +103,35 @@ onBeforeUnmount(() => {
                         <div v-if="showDropdown"
                             class="absolute right-0 mt-3 w-56 rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
 
-                            <!-- Menu -->
+                            <!-- Menu Dropdown -->
                             <div class="p-2">
 
-                                <!-- Profil -->
+                                <!-- Profil Saya -->
                                 <Link href="/profile"
-                                    class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-all group">
+                                    <!-- Ikon User yang lebih modern -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor"
+                                        class="w-5 h-5 opacity-70 group-hover:opacity-100">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                                     </svg>
-
                                     Profil Saya
                                 </Link>
 
-                                <!-- Logout -->
+                                <!-- Keluar -->
                                 <Link href="/logout" method="post" as="button"
-                                    class="w-full flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-rose-500 hover:bg-rose-50 transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5m-6 14h6" />
+                                    class="w-full flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-rose-500 hover:bg-rose-50 transition-all group">
+                                    <!-- Ikon Logout/Keluar yang lebih tegas -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor"
+                                        class="w-5 h-5 opacity-70 group-hover:opacity-100">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
                                     </svg>
-
                                     Keluar
                                 </Link>
+
                             </div>
                         </div>
                     </transition>
